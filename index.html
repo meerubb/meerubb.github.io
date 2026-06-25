@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meerub Nadeem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --aubergine: #1A0F1C;
+    --plum: #2D1B30;
+    --lavender-cream: #EDE1EA;
+    --orchid: #C77DAD;
+    --mauve: #9B6B8C;
+    --grey-mauve: #B8AEB5;
+    --off-white: #F9F4F8;
+    --line: rgba(155,107,140,0.28);
+    --line-dark: rgba(199,125,173,0.22);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--aubergine);
+    color:var(--off-white);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+
+  h2,h3,h4{ color:var(--off-white); }
+
+  .mono{ font-family:'JetBrains Mono',monospace; }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 32px; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0;left:0;right:0; z-index:100;
+    background:rgba(26,15,28,0.95);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .nav-mark{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; letter-spacing:0.04em; }
+  .nav-links{ display:flex; gap:28px; font-size:13px; font-family:'JetBrains Mono',monospace; letter-spacing:0.02em; }
+  .nav-links a{ opacity:0.7; transition:opacity 0.2s; margin-left:28px; }
+  .nav-links a:first-child{ margin-left:0; }
+  .nav-links a:hover{opacity:1;}
+  .nav-links a:focus-visible{outline:2px solid var(--orchid);outline-offset:4px;}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    background:var(--aubergine); color:var(--off-white);
+    padding:148px 0 64px; position:relative; overflow:hidden;
+  }
+  header.hero::before{
+    content:''; position:absolute; top:-20%;right:-10%;
+    width:560px;height:560px;
+    background:radial-gradient(circle, rgba(199,125,173,0.16), transparent 70%);
+    pointer-events:none;
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace; font-size:12px;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--orchid);
+    margin-bottom:20px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow .dot{ width:6px;height:6px;border-radius:50%; background:var(--orchid); display:inline-block; }
+
+  .hero h1{
+    font-size:clamp(40px, 6vw, 68px); line-height:1.04; font-weight:400;
+    color:var(--off-white); max-width:780px;
+  }
+  .hero h1 em{ font-style:italic; color:var(--orchid); font-weight:500; }
+
+  .hero-sub{ margin-top:24px; font-size:17px; color:var(--grey-mauve); max-width:560px; font-weight:400; }
+
+  .statement{ margin-top:56px; border-top:1px solid var(--line-dark); }
+  .statement-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:16px 0; border-bottom:1px solid var(--line-dark);
+    font-family:'JetBrains Mono',monospace; font-size:13px; gap:24px;
+  }
+  .statement-row .label{ color:var(--grey-mauve); flex:1; }
+  .statement-row .value{ color:var(--off-white); font-weight:500; text-align:right; white-space:nowrap; }
+  .statement-row .value.accent{color:var(--orchid);}
+  .statement-foot{
+    display:flex; justify-content:space-between; padding-top:14px;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em;
+    color:var(--mauve); text-transform:uppercase;
+  }
+
+  .hero-links{ margin-top:40px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:'JetBrains Mono',monospace; font-size:13px; padding:12px 22px;
+    border-radius:2px; border:1px solid var(--line-dark); transition:all 0.2s;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn.primary{ background:var(--orchid); color:var(--off-white); border-color:var(--orchid); font-weight:600; }
+  .btn.primary:hover{background:#d894bc;}
+  .btn.ghost{color:var(--off-white);}
+  .btn.ghost:hover{border-color:var(--orchid);color:var(--orchid);}
+  .btn:focus-visible{outline:2px solid var(--orchid);outline-offset:3px;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:96px 0; }
+  .section-head{ display:flex; align-items:baseline; gap:18px; margin-bottom:48px; }
+  .section-num{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--mauve); margin-right:18px; }
+  .section-head h2{ font-size:clamp(28px,3.4vw,38px); font-weight:400; }
+  .section-head .rule{ flex:1; height:1px; background:var(--line); }
+
+  /* ---------- PROJECTS ---------- */
+  .project{
+    border-top:1px solid var(--line); padding:48px 0;
+    display:grid; grid-template-columns:200px 1fr; gap:40px;
+  }
+  .project-meta{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--mauve); }
+  .project-meta .pnum{ font-size:34px; color:var(--line); display:block; margin-bottom:8px; font-weight:600; }
+  .project-meta .stack{ margin-top:14px; display:flex; flex-direction:column; gap:5px; color:var(--off-white); opacity:0.65; }
+
+  .project-body h3{ font-size:24px; font-weight:500; margin-bottom:14px; }
+  .project-finding{
+    background:var(--plum); border-left:2px solid var(--orchid);
+    padding:14px 18px; margin:18px 0; font-size:14.5px;
+  }
+  .project-finding .ftag{
+    font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--mauve); display:block; margin-bottom:6px;
+  }
+  .project-body p.desc{ color:var(--grey-mauve); margin-bottom:8px; }
+  .project-links{ margin-top:18px; display:flex; gap:18px; font-family:'JetBrains Mono',monospace; font-size:12.5px; }
+  .project-links a{ border-bottom:1px solid var(--mauve); padding-bottom:2px; transition:border-color 0.2s, color 0.2s; }
+  .project-links a:hover{color:var(--orchid);border-color:var(--orchid);}
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-primary{ border-top:1px solid var(--line); }
+  .exp-row{
+    display:grid; grid-template-columns:160px 1fr; gap:32px;
+    padding:30px 0; border-bottom:1px solid var(--line);
+  }
+  .exp-date{ font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--mauve); padding-top:3px; }
+  .exp-role-line{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin-bottom:8px; }
+  .exp-role-line h3{font-size:18px;font-weight:500;}
+  .exp-org{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--mauve); }
+  .exp-row p{font-size:14px;color:var(--grey-mauve);}
+  .exp-row .status-tag{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase;
+    letter-spacing:0.05em; background:var(--orchid); color:var(--off-white);
+    padding:3px 8px; border-radius:2px; font-weight:600;
+  }
+
+  .exp-compact{ margin-top:20px; display:flex; flex-direction:column; gap:0; }
+  .exp-compact-row{
+    display:flex; justify-content:space-between; padding:14px 0;
+    border-bottom:1px dashed var(--line); font-size:13.5px; gap:20px; flex-wrap:wrap;
+  }
+  .exp-compact-row .ec-title{font-weight:500;}
+  .exp-compact-row .ec-org{ color:var(--mauve); font-family:'JetBrains Mono',monospace; font-size:12px; }
+  .exp-compact-row .ec-desc{ color:var(--grey-mauve); flex:1 1 100%; font-size:13px; margin-top:2px; }
+  .exp-compact-row .ec-date{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--grey-mauve); white-space:nowrap; }
+
+  /* ---------- PROGRAMS ---------- */
+  .program{
+    border-top:1px solid var(--line); padding:40px 0;
+    display:grid; grid-template-columns:200px 1fr; gap:40px;
+  }
+  .program-meta{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--mauve); }
+  .program-meta .stack{ margin-top:14px; display:flex; flex-direction:column; gap:5px; color:var(--off-white); opacity:0.65; }
+  .program-body h3{ font-size:22px; font-weight:500; margin-bottom:6px; }
+  .program-org{ font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--mauve); margin-bottom:14px; display:block; }
+  .program-body p.desc{ color:var(--grey-mauve); margin-bottom:8px; }
+  .program-links{ margin-top:18px; display:flex; gap:18px; font-family:'JetBrains Mono',monospace; font-size:12.5px; }
+  .program-links a{ border-bottom:1px solid var(--mauve); padding-bottom:2px; transition:border-color 0.2s, color 0.2s; }
+  .program-links a:hover{color:var(--orchid);border-color:var(--orchid);}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:28px 48px; }
+  .skill-cat{ border-top:1px solid var(--line); padding-top:14px; }
+  .skill-cat .cat-label{
+    font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--mauve); margin-bottom:10px;
+  }
+  .skill-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .skill-tags span{ font-size:13px; padding:5px 10px; background:var(--plum); border:1px solid var(--line); border-radius:2px; color:var(--off-white); }
+
+  /* ---------- EDUCATION ---------- */
+  .edu-card{ border:1px solid var(--line); background:var(--plum); padding:28px 32px; }
+  .edu-card h3{font-size:19px;font-weight:500;margin-bottom:4px;}
+  .edu-card .edu-meta{ font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--grey-mauve); margin-bottom:14px; }
+  .edu-honors{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .edu-honors span{
+    font-size:12px; font-family:'JetBrains Mono',monospace; padding:4px 9px;
+    border:1px solid var(--mauve); color:var(--grey-mauve); border-radius:2px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--aubergine); color:var(--off-white); padding:80px 0 40px; }
+  footer h2{ font-size:clamp(30px,4vw,44px); font-weight:400; color:var(--off-white); max-width:600px; }
+  footer h2 em{color:var(--orchid);font-style:italic;}
+  .footer-links{ margin-top:36px; display:flex; gap:16px; flex-wrap:wrap; }
+  .footer-bottom{
+    margin-top:64px; padding-top:24px; border-top:1px solid var(--line-dark);
+    display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace;
+    font-size:11.5px; color:var(--mauve); flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 760px){
+    .wrap{padding:0 20px;}
+    nav .wrap{ flex-wrap:wrap; height:auto; padding:10px 20px; row-gap:6px; }
+    .nav-mark{font-size:11px; flex:1 0 100%;}
+    .nav-links{gap:12px;font-size:10.5px; flex-wrap:wrap; width:100%; justify-content:flex-start;}
+    .nav-links a{margin-left:0;}
+    header.hero{padding:148px 0 48px;}
+    .statement-row{
+      font-size:11.5px; flex-direction:column; align-items:flex-start; gap:4px;
+    }
+    .statement-row .value{ text-align:left; white-space:normal; }
+    .statement-foot{ flex-direction:column; gap:4px; }
+    .project{grid-template-columns:1fr;gap:18px;}
+    .project-meta .pnum{font-size:26px;}
+    .program{grid-template-columns:1fr;gap:18px;}
+    .exp-row{grid-template-columns:1fr;gap:8px;}
+    .skills-grid{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-mark">MEERUB NADEEM</div>
+    <div class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#work">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>Lahore, Pakistan</div>
+    <h1>Insights, Analytics &amp;<br><em>Financial Innovation</em>.</h1>
+    <p class="hero-sub">FinTech student and aspiring Data Analyst dedicated to transforming complex data into actionable insights and strategic business solutions.</p>
+
+    
+    
+<div class="statement">
+      <div class="statement-row">
+        <span class="label">BS Financial Technology — FAST-NUCES</span>
+        <span class="value accent">2024–2028</span>
+      </div>
+      <div class="statement-row">
+        <span class="label">Academic Profile</span>
+        <span class="value">Third-Year Student · CGPA 3.89</span>
+      </div>
+      <div class="statement-row">
+        <span class="label">Honors & Awards</span>
+        <span class="value">Gold Medalist S1 · Rector's List S1 · Dean's List S2 S3 S4</span>
+      </div>
+      <div class="statement-foot">
+        <span>FAST-NUCES Lahore</span>
+        <span>Financial Technology</span>
+      </div>
+    </div>
+
+    <div class="hero-links">
+
+      <a href="#work" class="btn primary">View my work →</a>
+      <a href="https://github.com/meerubb" class="btn ghost">GitHub</a>
+      <a href="https://linkedin.com/in/meerub-nadeem-9a4225279" class="btn ghost">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2>Experience</h2>
+        <span class="rule"></span>
+      </div>
+
+      <div class="exp-primary">
+        <div class="exp-row">
+          <div class="exp-date">Jun 2026 — Present</div>
+          <div>
+            <div class="exp-role-line">
+              <h3>MTO — Business Intelligence</h3>
+              
+            </div>
+            <div class="exp-org">Break Thirty · Onsite, Full-time</div>
+            <p style="margin-top:10px;">Data Executive and Business Intelligence</p>
+          </div>
+        </div>
+
+        <div class="exp-row">
+          <div class="exp-date">Jun 2026 — Present</div>
+          <div>
+            <div class="exp-role-line">
+              <h3>Machine Learning Intern</h3>
+            </div>
+            <div class="exp-org">FlyRank · Remote</div>
+            <p style="margin-top:10px;">Applying machine learning concepts to real-world problems, working toward a reviewed capstone project at completion.</p>
+          </div>
+        </div>
+
+        <div class="exp-row">
+          <div class="exp-date">Jan 2026 — Present</div>
+          <div>
+            <div class="exp-role-line">
+              <h3>Founder</h3>
+            </div>
+            <div class="exp-org">FinNuance · Financial Literacy Initiative</div>
+            <p style="margin-top:10px;">Built FinNuance from the ground up to address a measurable financial literacy gap in Pakistan, developing its brand identity, content strategy, and social presence.</p>
+          </div>
+        </div>
+
+        <div class="exp-row">
+          <div class="exp-date">Jan — May 2026</div>
+          <div>
+            <div class="exp-role-line">
+              <h3>Teaching Assistant</h3>
+            </div>
+            <div class="exp-org"> Data Analysis I, FAST-NUCES · Hybrid </div>
+            <p style="margin-top:10px;">Supported 100+ students through core data analysis concepts, coursework guidance, and grading across the full semester.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2>Projects</h2>
+        <span class="rule"></span>
+      </div>
+
+      <div class="project">
+        <div class="project-meta">
+          <span class="pnum">01</span>
+          Power BI · DAX<br>Data Modelling<br>Python · Pandas
+          <div class="stack">99K orders<br>6 relational tables</div>
+        </div>
+        <div class="project-body">
+          <h3>Delivery Performance &amp; Customer Satisfaction — Olist E-Commerce Dashboard</h3>
+          <p class="desc">Built an end-to-end Power BI dashboard on a 99K-order e-commerce dataset, modelling 6 relational tables and writing custom DAX measures to analyse delivery performance against customer satisfaction.</p>
+          <div class="project-finding">
+            <span class="ftag">Key finding</span>
+            Late deliveries affect only 8.1% of orders but correspond to a review score drop from 4.29 to 2.57 out of 5, a high-impact, low-frequency operational risk that volume-based monitoring would miss.
+          </div>
+          <p class="desc">Diagnosed and resolved a DAX date-logic bug that was inflating the late-delivery rate by nearly 40%, independently verifying every final metric against the raw dataset in Python before publishing.</p>
+          <div class="project-links">
+            <a href="https://github.com/meerubb/olist-delivery-satisfaction-analysis">GitHub repo ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-meta">
+          <span class="pnum">02</span>
+          SQL Server · T-SQL<br>Python · Tkinter<br>Matplotlib
+          <div class="stack">3NF schema<br>7 entities</div>
+        </div>
+        <div class="project-body">
+          <h3>FinCore — Relational Lending Management System</h3>
+          <p class="desc">Designed a 3NF-normalised SQL Server schema across 7 entities covering loan origination, instalment scheduling, collateral tracking, and risk classification.</p>
+          <div class="project-finding">
+            <span class="ftag">System logic</span>
+            Stored procedures enforce credit eligibility and a 40% income to instalment cap. Triggers maintain an immutable audit log and auto penalise late payments, embedding risk controls directly into the data layer.
+          </div>
+          <p class="desc">A Tkinter and Matplotlib interface abstracts the SQL layer entirely, so a loan officer can manage the full lending lifecycle without writing a single query.</p>
+          <div class="project-links">
+            <a href="https://github.com/meerubb/fincore-lending-system">GitHub repo ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-meta">
+          <span class="pnum">03</span>
+          Python · Pandas<br>NumPy · Matplotlib<br>Seaborn
+          <div class="stack">Multi-location<br>10+ KPIs</div>
+        </div>
+        <div class="project-body">
+          <h3>Sales Forecasting &amp; Business Intelligence — Coffee Chain</h3>
+          <p class="desc">Built an EDA pipeline on a multi-location coffee chain dataset, engineering 10+ KPIs across regional performance, seasonal demand trends, and product-level margin analysis.</p>
+          <div class="project-finding">
+            <span class="ftag">Key finding</span>
+            Central market generated $265K in coffee sales and $94K in profit, nearly 3x South market's $104K and $32K, despite identical product lines and pricing. The disparity reflects a demand and resource allocation gap rather than cost or product differences, suggesting investment is concentrated in an already-saturated market while a higher-potential region remains underserved.
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/meerubb/retail-sales-forecasting">GitHub repo ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-meta">
+          <span class="pnum">04</span>
+          SPSS · Inferential<br>Statistics<br>Hypothesis Testing
+          <div class="stack">1,100 transactions<br>p &lt; .001, all tests</div>
+        </div>
+        <div class="project-body">
+          <h3>Credit Card Fraud Detection — Statistical Behavioural Analysis</h3>
+          <p class="desc">Analysed 1,100 credit card transactions in SPSS using an independent-samples t-test, Mann-Whitney U test, and Chi-Square test, with every test returning p &lt; .001.</p>
+          <div class="project-finding">
+            <span class="ftag">Key finding</span>
+           Fraudulent transactions averaged $562 versus $78 for legitimate ones, a 7x difference, with statistically significant clustering at hours 22 and 23. Together, these patterns map directly onto time-sensitive, amount-aware logic for fraud detection rules.
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/meerubb/credit-fraud-behavioral-profiling">GitHub repo ↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="programs">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2>Programs</h2>
+        <span class="rule"></span>
+      </div>
+
+      <div class="program">
+        <div class="program-meta">
+          Python · Pygame
+          <div class="stack">5 levels<br>No pre-made assets</div>
+        </div>
+        <div class="program-body">
+          <h3>Ghost Grid</h3>
+          <span class="program-org">Stanford Code in Place 2026 · Final Project</span>
+          <p class="desc">For my final project, I built Ghost Grid: a 5-level maze escape game using Python and Pygame. No pre-made assets, just pure logic, grid boundaries, and ghosts.</p>
+          <div class="program-links">
+            <a href="https://github.com/meerubb/ghost-grid">GitHub repo ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2>Skills</h2>
+        <span class="rule"></span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-cat">
+          <div class="cat-label">Languages</div>
+          <div class="skill-tags">
+            <span>Python</span><span>SQL</span><span>JavaScript</span><span>HTML</span><span>CSS</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="cat-label">Data &amp; BI</div>
+          <div class="skill-tags">
+            <span>Power BI</span><span>DAX</span><span>Tableau</span><span>Advanced Excel</span><span>Pivot Tables</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="cat-label">Analytics</div>
+          <div class="skill-tags">
+            <span>SPSS</span><span>EDA</span><span>Statistical Inference</span><span>Hypothesis Testing</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="cat-label">Databases</div>
+          <div class="skill-tags">
+            <span>Relational Schema Design</span><span>Normalisation</span><span>Query Optimisation</span><span>SQL Server</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="cat-label">Libraries</div>
+          <div class="skill-tags">
+            <span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Seaborn</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="cat-label">Finance</div>
+          <div class="skill-tags">
+            <span>Financial Accounting</span><span>Business Finance</span><span>Managerial Accounting</span><span>QuickBooks</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let's<em> Connect</em>.</h2>
+    <div class="footer-links">
+      <a href="https://mail.google.com/mail/?view=cm&to=meerubnadeem837@gmail.com" class="btn primary" target="_blank">Email me →</a>
+      <a href="https://linkedin.com/in/meerub-nadeem-9a4225279" class="btn ghost">LinkedIn</a>
+      <a href="https://github.com/meerubb" class="btn ghost">GitHub</a>
+    </div>
+    <div class="footer-bottom">
+      <span>Meerub Nadeem — Lahore, Pakistan</span>
+      <span>meerubnadeem837@gmail.com</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
